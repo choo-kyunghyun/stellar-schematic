@@ -1,0 +1,693 @@
+/* VS Code Extension Webview - Theme Compatible */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--vscode-font-family, system-ui);
+    font-size: var(--vscode-font-size, 13px);
+    background-color: var(--vscode-editor-background);
+    color: var(--vscode-editor-foreground);
+    line-height: 1.6;
+}
+
+button, input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    background-color: var(--vscode-sideBar-background);
+    border-bottom: 1px solid var(--vscode-sideBar-border, #3a3a3a);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+header h1 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+header p {
+    margin: 0.2rem 0 0 0;
+    font-size: 0.85rem;
+    color: var(--vscode-descriptionForeground);
+}
+
+#global-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+#global-actions button {
+    background-color: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+    border: 1px solid var(--vscode-widget-border, transparent);
+    padding: 0.4rem 0.9rem;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.15s;
+}
+
+#global-actions button:hover {
+    background-color: var(--vscode-button-secondaryHoverBackground);
+}
+
+.global-actions-divider {
+    width: 1px;
+    height: 1.2rem;
+    background: var(--vscode-sideBar-border, #3a3a3a);
+    margin: 0 0.3rem;
+}
+
+/* Search Bar */
+#deep-search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+    max-width: 400px;
+}
+
+.deep-search-bar {
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+}
+
+#deep-search-input {
+    flex: 1;
+    background-color: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-inputBorder);
+    padding: 0.35rem 0.5rem;
+    border-radius: 2px;
+    font-size: 0.9rem;
+}
+
+#deep-search-input::placeholder {
+    color: var(--vscode-input-placeholderForeground);
+}
+
+.deep-search-options {
+    display: flex;
+    gap: 0.2rem;
+}
+
+.deep-option-btn {
+    background-color: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+    border: 1px solid var(--vscode-widget-border, transparent);
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: background-color 0.15s;
+}
+
+.deep-option-btn:hover {
+    background-color: var(--vscode-button-secondaryHoverBackground);
+}
+
+.deep-option-btn.is-active {
+    background-color: var(--vscode-inputValidation-warningBackground);
+    color: var(--vscode-inputValidation-warningForeground);
+}
+
+.deep-search-results {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.3rem);
+    left: 0;
+    right: 0;
+    background-color: var(--vscode-dropdown-background);
+    border: 1px solid var(--vscode-dropdown-border);
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 30;
+    border-radius: 2px;
+}
+
+.deep-search-results.open {
+    display: block;
+}
+
+.deep-search-item {
+    width: 100%;
+    background: transparent;
+    color: var(--vscode-dropdown-foreground);
+    border: none;
+    border-bottom: 1px solid var(--vscode-sideBar-border, #3a3a3a);
+    text-align: left;
+    padding: 0.4rem;
+    cursor: pointer;
+}
+
+.deep-search-item:hover {
+    background-color: var(--vscode-list-hoverBackground);
+}
+
+.deep-search-item strong {
+    display: block;
+    font-size: 0.85rem;
+}
+
+.deep-search-item span {
+    font-size: 0.8rem;
+    color: var(--vscode-descriptionForeground);
+}
+
+/* Main Layout */
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    main {
+        flex-direction: row;
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+}
+
+/* Sidebar */
+aside {
+    background-color: var(--vscode-sideBar-background);
+    border: 1px solid var(--vscode-sideBar-border, #3a3a3a);
+    border-radius: 3px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+@media (min-width: 768px) {
+    aside {
+        width: 240px;
+        flex-shrink: 0;
+    }
+}
+
+aside h2 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0 0 0.8rem 0;
+    color: var(--vscode-sideBarSectionHeader-foreground);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.aside-search input {
+    width: 100%;
+    background-color: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-inputBorder);
+    padding: 0.35rem;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+#classes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+footer {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    padding: 0.75rem 1rem 1rem;
+    color: var(--vscode-descriptionForeground);
+}
+
+footer p {
+    margin: 0;
+}
+
+#classes-list button {
+    width: 100%;
+    padding: 0.4rem 0.6rem;
+    background-color: transparent;
+    border: none;
+    border-radius: 2px;
+    color: var(--vscode-list-foreground);
+    text-align: left;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background-color 0.1s;
+}
+
+#classes-list button:hover {
+    background-color: var(--vscode-list-hoverBackground);
+}
+
+#classes-list button.active {
+    background-color: var(--vscode-list-activeSelectionBackground);
+    color: var(--vscode-list-activeSelectionForeground);
+}
+
+/* Main Content */
+#main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    min-width: 0;
+}
+
+#graph-container, #class-details {
+    background-color: var(--vscode-sideBar-background);
+    border: 1px solid var(--vscode-sideBar-border, #3a3a3a);
+    border-radius: 3px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#graph-container {
+    flex-grow: 1;
+    min-height: 300px;
+}
+
+#graph-container h2, #class-details h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+}
+
+.graph-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+.graph-controls {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background-color: var(--vscode-input-background);
+    border: 1px solid var(--vscode-inputBorder);
+    border-radius: 2px;
+    padding: 0.2rem;
+}
+
+.graph-control-btn {
+    background-color: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+    border: 1px solid var(--vscode-widget-border, transparent);
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.15s;
+}
+
+.graph-control-btn:hover {
+    background-color: var(--vscode-button-secondaryHoverBackground);
+}
+
+.graph-zoom-slider {
+    width: 120px;
+    accent-color: var(--vscode-focusBorder);
+}
+
+.graph-zoom-level {
+    min-width: 2.5rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--vscode-descriptionForeground);
+    margin: 0 0.3rem;
+}
+
+.scan-status {
+    margin: 0.3rem 0;
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--vscode-descriptionForeground);
+    border: 1px solid var(--vscode-inputBorder);
+    border-radius: 2px;
+    background-color: var(--vscode-input-background);
+}
+
+#mermaid-graph {
+    flex-grow: 1;
+    width: 100%;
+    overflow: auto;
+    background-color: var(--vscode-editor-background);
+    border: 1px solid var(--vscode-sideBar-border, #3a3a3a);
+    border-radius: 3px;
+    min-height: 300px;
+    max-height: 500px;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    position: relative;
+}
+
+#mermaid-graph svg {
+    display: block;
+}
+
+#mermaid-graph .graph-canvas {
+    position: relative;
+}
+
+#mermaid-graph .graph-canvas > svg {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#mermaid-graph .node {
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+#mermaid-graph .node:hover {
+    opacity: 0.8;
+}
+
+#mermaid-graph .node.active-node {
+    stroke: var(--vscode-focusBorder) !important;
+    stroke-width: 3px !important;
+}
+
+#mermaid-graph.is-panning {
+    cursor: grab;
+}
+
+/* Details Section */
+#class-details {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+#details-actions {
+    margin-bottom: 0.5rem;
+}
+
+#details-content {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.scan-status.has-error {
+    color: var(--vscode-errorForeground);
+    border-color: var(--vscode-inputValidation-errorBorder);
+}
+
+/* Form Elements */
+input[type="text"],
+input[type="number"],
+input[type="search"],
+textarea,
+select {
+    background-color: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    border: 1px solid var(--vscode-inputBorder);
+    padding: 0.35rem;
+    border-radius: 2px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--vscode-focusBorder);
+}
+
+/* Details Section */
+#details-actions {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 0.8rem;
+}
+
+#details-actions button {
+    background-color: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+    border: 1px solid var(--vscode-widget-border, transparent);
+    padding: 0.35rem 0.7rem;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: background-color 0.15s;
+}
+
+#details-actions button:hover {
+    background-color: var(--vscode-button-secondaryHoverBackground);
+}
+
+.inline-link-btn {
+    background: transparent;
+    border: none;
+    color: var(--vscode-textLink-foreground);
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+    font-size: inherit;
+}
+
+.inline-link-btn:hover {
+    color: var(--vscode-textLink-activeForeground);
+}
+
+/* Panels */
+.panels-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+}
+
+.panel {
+    background-color: var(--vscode-input-background);
+    border: 1px solid var(--vscode-inputBorder);
+    border-radius: 3px;
+    padding: 0.75rem;
+}
+
+.panel h4 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    color: var(--vscode-sideBarSectionHeader-foreground);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--vscode-inputBorder);
+    padding-bottom: 0.3rem;
+}
+
+.panel ul {
+    margin: 0;
+    padding-left: 1rem;
+    color: var(--vscode-editor-foreground);
+}
+
+.panel ul li {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.api-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.api-method {
+    background-color: var(--vscode-editor-background);
+    padding: 0.5rem;
+    border-radius: 2px;
+    border-left: 2px solid var(--vscode-focusBorder);
+}
+
+.api-method p {
+    margin: 0.3rem 0 0 0;
+    color: var(--vscode-descriptionForeground);
+    font-size: 0.85rem;
+}
+
+.readonly-note {
+    margin-top: 0.4rem;
+    padding: 0.4rem;
+    color: var(--vscode-descriptionForeground);
+    font-size: 0.85rem;
+    background-color: var(--vscode-input-background);
+    border-radius: 2px;
+}
+
+.source-panel {
+    margin-top: 0.75rem;
+    background-color: var(--vscode-input-background);
+    border: 1px solid var(--vscode-inputBorder);
+    border-radius: 3px;
+    padding: 0.75rem;
+}
+
+.source-panel h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--vscode-sideBarSectionHeader-foreground);
+}
+
+.source-panel ul {
+    margin: 0;
+    padding-left: 1rem;
+}
+
+/* Modals */
+#settings-modal {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px);
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+#settings-modal.hidden {
+    display: none;
+}
+
+#settings-modal > div {
+    background-color: var(--vscode-sideBar-background);
+    border: 1px solid var(--vscode-sideBar-border, #3a3a3a);
+    border-radius: 3px;
+    width: 100%;
+    max-width: 450px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#settings-form {
+    padding: 1rem;
+}
+
+.form-group {
+    margin-bottom: 0.75rem;
+}
+
+.form-group > label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--vscode-inputBorder);
+}
+
+#settings-form button {
+    background-color: var(--vscode-button-secondaryBackground);
+    color: var(--vscode-button-secondaryForeground);
+    border: 1px solid var(--vscode-widget-border, transparent);
+    padding: 0.35rem 0.75rem;
+    border-radius: 2px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: background-color 0.15s;
+}
+
+#settings-form button:hover {
+    background-color: var(--vscode-button-secondaryHoverBackground);
+}
+
+#settings-form button[type="submit"] {
+    background-color: var(--vscode-button-background);
+    color: var(--vscode-button-foreground);
+}
+
+#settings-form button[type="submit"]:hover {
+    background-color: var(--vscode-button-hoverBackground);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #global-actions {
+        flex-direction: column;
+    }
+
+    #deep-search-wrap {
+        width: 100%;
+        max-width: none;
+    }
+
+    .global-actions-divider {
+        display: none;
+    }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--vscode-scrollbar-shadow);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--vscode-scrollbarSlider-hoverBackground);
+}

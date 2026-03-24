@@ -1,0 +1,58 @@
+{
+  "name": "stellar-schematic",
+  "displayName": "Stellar Schematic",
+  "description": "Visualize JavaScript module relationships in VS Code webview.",
+  "version": "0.0.1",
+  "publisher": "choo-kyunghyun",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/choo-kyunghyun/stellar-schematic"
+  },
+  "homepage": "https://github.com/choo-kyunghyun/stellar-schematic",
+  "bugs": {
+    "url": "https://github.com/choo-kyunghyun/stellar-schematic/issues"
+  },
+  "engines": {
+    "vscode": "^1.110.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "stellar-schematic.start",
+        "title": "SS: Start",
+        "icon": "$(graph)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "stellar-schematic.start",
+          "group": "navigation@90"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "package": "vsce package",
+    "publish": "vsce publish",
+    "licenses:summary": "license-checker --production --summary"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.7.1",
+    "@types/node": "22.x",
+    "eslint": "^9.39.3",
+    "license-checker": "^25.0.1"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.29.2",
+    "@babel/traverse": "^7.29.0",
+    "mermaid": "^11.13.0"
+  }
+}

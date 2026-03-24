@@ -1,0 +1,10 @@
+.vscode/**
+.git/**
+.gitignore
+.yarnrc
+*.vsix
+**/*.log
+**/.DS_Store
+**/jsconfig.json
+**/*.map
+**/eslint.config.mjs

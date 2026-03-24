@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="{{baseHref}}">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src {{cspSource}} https: data:; style-src {{cspSource}} 'unsafe-inline'; font-src {{cspSource}} https: data:; script-src 'nonce-{{nonce}}'; connect-src {{cspSource}} https: data:;">
+    <title>Stellar Schematic</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <div id="app">
+        <header>
+            <div>
+                <h1>Stellar Schematic</h1>
+                <p>Workspace JavaScript Architecture Scanner</p>
+            </div>
+            <div id="global-actions">
+                <div id="deep-search-wrap" aria-label="Deep search">
+                    <div class="deep-search-bar">
+                        <input id="deep-search-input" type="search" placeholder="Deep Search: fields, methods..." autocomplete="off">
+                        <div class="deep-search-options" role="group" aria-label="Deep search options">
+                            <button id="deep-match-case-btn" class="deep-option-btn" type="button" aria-pressed="false" title="Match Case">Aa</button>
+                            <button id="deep-whole-word-btn" class="deep-option-btn" type="button" aria-pressed="false" title="Match Whole Word">Abc</button>
+                        </div>
+                    </div>
+                    <div id="deep-search-results" class="deep-search-results" role="listbox" aria-label="Deep search results"></div>
+                </div>
+                <div class="global-actions-divider" aria-hidden="true"></div>
+                <button id="settings-btn" title="Scan Settings">⚙️ Settings</button>
+                <button id="add-new-class-btn">Scan Now</button>
+                <button id="import-btn">Auto Scan Off</button>
+                <button id="export-btn">Open Source</button>
+            </div>
+        </header>
+
+        <main>
+            
+            <aside>
+                <h2>Modules</h2>
+                <div class="aside-search">
+                    <input id="class-search-input" type="search" placeholder="Search modules">
+                </div>
+                <nav id="classes-list">
+                    <!-- Module buttons will be injected here by JS -->
+                </nav>
+            </aside>
+
+            <div id="main-content">
+                
+                <section id="graph-container">
+                    <div class="graph-header">
+                        <h2>Workspace Relationship Graph</h2>
+                        <div class="graph-controls" aria-label="Graph zoom controls">
+                            <button id="graph-zoom-out" class="graph-control-btn" type="button" title="Zoom out">-</button>
+                            <input id="graph-zoom-slider" class="graph-zoom-slider" type="range" min="30" max="1000" step="10" value="120" title="Zoom slider" aria-label="Graph zoom slider">
+                            <span id="graph-zoom-level" class="graph-zoom-level" aria-live="polite">100%</span>
+                            <button id="graph-zoom-in" class="graph-control-btn" type="button" title="Zoom in">+</button>
+                            <button id="graph-zoom-reset" class="graph-control-btn" type="button" title="Reset zoom">Reset</button>
+                        </div>
+                    </div>
+                    <div id="scan-status" class="scan-status" aria-live="polite"></div>
+                    <div id="mermaid-graph">
+                        <!-- Mermaid graph will be rendered here -->
+                    </div>
+                </section>
+
+                <section id="class-details">
+                    <div>
+                        <h2>Details</h2>
+                        <div id="details-actions">
+                            <!-- Read-only actions will be injected here -->
+                        </div>
+                    </div>
+                    <div id="details-content">
+                        <p>Select a module to see its details.</p>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <footer>
+            <p>Stellar Schematic | &copy; 2026 Choo Kyunghyun</p>
+            <p class="license-notice">Diagrams rendered with <a href="https://mermaid.js.org/" target="_blank" rel="noopener">Mermaid.js</a> (MIT License).</p>
+        </footer>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="hidden">
+        <div>
+            <form id="settings-form" autocomplete="off">
+                <h3 id="settings-modal-title" style="font-size:1.5rem; font-weight:700; color:var(--primary-text); margin:0 0 2rem 0;">Project Settings</h3>
+                <div class="form-group">
+                    <label for="scan-interval-input">Auto Scan Interval (seconds)</label>
+                    <input id="scan-interval-input" type="number" min="5" max="3600" step="5" value="60">
+                    <p style="color:var(--secondary-text); font-size:0.875rem; margin-top:0.5rem;">Set the polling interval used when Auto Scan is enabled. Use the toolbar button to toggle it on or off.</p>
+                </div>
+                <div class="form-actions">
+                    <button type="button" id="cancel-settings-btn">Cancel</button>
+                    <button type="submit" id="save-settings-btn">Save Settings</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script nonce="{{nonce}}" src="{{mermaidSrc}}"></script>
+    <script nonce="{{nonce}}">
+        mermaid.initialize({ startOnLoad: false, theme: 'dark' });
+    </script>
+    <!-- Application Modules -->
+    <script nonce="{{nonce}}" src="scripts/store.js"></script>
+    <script nonce="{{nonce}}" src="scripts/graph.js"></script>
+    <script nonce="{{nonce}}" src="scripts/workspace-ui.js"></script>
+</body>
+</html>
